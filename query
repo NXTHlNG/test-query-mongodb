@@ -1,0 +1,846 @@
+use movieDb
+
+//Inserting test data
+
+db.authors.insertMany([{
+    _id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+    name: "Mary Johnson",
+    email: "maryjohnson@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+    name: "Michael Davis",
+    email: "michaeldavis@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84ef7"),
+    name: "Sarah Wilson",
+    email: "sarahwilson@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+    name: "William Brown",
+    email: "williambrown@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84ef9"),
+    name: "Jennifer Garcia",
+    email: "jennifergarcia@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84efa"),
+    name: "Christopher Martinez",
+    email: "christophermartinez@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+    name: "Elizabeth Lee",
+    email: "elizabethlee@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84efc"),
+    name: "Daniel Clark",
+    email: "danielclark@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84efd"),
+    name: "Ava Rodriguez",
+    email: "avarodriguez@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84efe"),
+    name: "Joseph Wright",
+    email: "josephwright@example.com",
+    avatar: "https://example.com/avatar.jpg"
+}, {
+    _id: ObjectId("615dca5dc6a5f6b5d6b84eff"),
+    name: "Samantha Johnson",
+    email: "samantha.johnson@example.com",
+    avatar: "https://example.com/avatar/samantha_johnson.jpg"
+}, {
+    _id: ObjectId("615bfe23ee047d6c9f6c09b7"),
+    name: "David Lee",
+    email: "david.lee@example.com",
+    avatar: "https://example.com/avatar/david_lee.jpg"
+}, {
+    _id: ObjectId("615bfe23ee047d6c9f6c09b8"),
+    name: "Emily Chen",
+    email: "emily.chen@example.com",
+    avatar: "https://example.com/avatar/emily_chen.jpg"
+}, {
+    _id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    name: "Maximilian Mueller",
+    email: "max.mueller@example.com",
+    avatar: "https://example.com/avatar/max_mueller.jpg"
+}, {
+    _id: ObjectId("615bfe23ee047d6c9f6c09b5"),
+    name: "Sophie Jackson",
+    email: "sophie.jackson@example.com",
+    avatar: "https://example.com/avatar/sophie_jackson.jpg"
+}, {
+    _id: ObjectId("623567dd895a790c3b43e399"),
+    name: "Alexander Kim",
+    email: "alexander.kim@example.com",
+    avatar: "https://example.com/avatar/alexander_kim.jpg"
+}, {
+    _id: ObjectId("6235680a895a790c3b43e3a0"),
+    name: "Olivia Wang",
+    email: "olivia.wang@example.com",
+    avatar: "https://example.com/avatar/olivia_wang.jpg"
+}, {
+    _id: ObjectId("6235683a895a790c3b43e3a5"),
+    name: "Lucas Hernandez",
+    email: "lucas.hernandez@example.com",
+    avatar: "https://example.com/avatar/lucas_hernandez.jpg"
+},])
+
+db.videos.insertMany([{
+    title: "Getting Started with MongoDB",
+    description: "Learn the basics of MongoDB in this introductory tutorial.",
+    views: 34005,
+    likes: 523,
+    dislikes: 32,
+    tags: ["MongoDB", "database", "tutorial"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+    uploadedAt: ISODate("2022-02-01T00:00:00Z"),
+    duration: 1200,
+    comments: [{
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b7"),
+        content: "Great tutorial, thanks for sharing!",
+        createdAt: ISODate("2022-02-01T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+            content: "Glad you found it helpful!",
+            createdAt: ISODate("2022-02-01T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "I didn't understand the part about indexing, can you explain more?",
+        createdAt: ISODate("2022-02-02T09:12:34Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+            content: "Sure, I can make a separate video on that topic. Stay tuned!",
+            createdAt: ISODate("2022-02-02T10:00:00Z")
+        }]
+    }]
+}, {
+    title: "Advanced MongoDB Techniques",
+    description: "Take your MongoDB skills to the next level with these advanced techniques.",
+    views: 4567,
+    likes: 123,
+    dislikes: 12,
+    tags: ["MongoDB", "database", "advanced"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b7"),
+    uploadedAt: ISODate("2022-02-03T00:00:00Z"),
+    duration: 1800,
+    comments: [{
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "This is exactly what I was looking for, thank you!",
+        createdAt: ISODate("2022-02-03T08:12:34Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef7"),
+            content: "Glad to hear it! Let me know if you have any questions.",
+            createdAt: ISODate("2022-02-03T08:45:32Z")
+        }]
+    }]
+}, {
+    title: "Building RESTful APIs with Node.js and MongoDB",
+    description: "Learn how to build RESTful APIs using Node.js and MongoDB.",
+    views: 123123,
+    likes: 1987,
+    dislikes: 324,
+    tags: ["Node.js", "MongoDB", "API", "tutorial"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b8"),
+    uploadedAt: ISODate("2022-02-05T00:00:00Z"),
+    duration: 2400,
+    comments: [{
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "Excellent tutorial, very clear and easy to follow.",
+        createdAt: ISODate("2022-02-05T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef9"),
+            content: "Thank you! I'm glad you found it helpful.",
+            createdAt: ISODate("2022-02-05T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efa"),
+        content: "Can you share the code for this tutorial?",
+        createdAt: ISODate("2022-02-06T09:12:34Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b8"),
+            content: "Sure, you can find the code on my GitHub repo.",
+            createdAt: ISODate("2022-02-06T10:00:00Z")
+        }]
+    }]
+}, {
+    title: "MongoDB Performance Tuning",
+    description: "Learn how to optimize the performance of your MongoDB database.",
+    views: 879789,
+    likes: 12433,
+    dislikes: 2344,
+    tags: ["MongoDB", "database", "performance"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    uploadedAt: ISODate("2022-02-07T00:00:00Z"),
+    duration: 3000,
+    comments: [{
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "This is exactly what I needed, thank you!",
+        createdAt: ISODate("2022-02-07T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+            content: "You're welcome! Let me know if you have any questions.",
+            createdAt: ISODate("2022-02-07T12:45:32Z")
+        }],
+    }]
+}, {
+    title: "How to Make a Perfect Omelette",
+    description: "Learn the secrets to making a perfect omelette every time.",
+    views: 78678,
+    likes: 1233,
+    dislikes: 123,
+    tags: ["cooking", "breakfast", "omelette", "recipe"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84efc"),
+    uploadedAt: ISODate("2022-03-01T00:00:00Z"),
+    duration: 600,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efa"),
+        content: "I tried your recipe and it turned out amazing! Thanks for sharing!",
+        createdAt: ISODate("2022-03-01T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84efc"),
+            content: "That's great to hear! I'm glad you enjoyed it.",
+            createdAt: ISODate("2022-03-01T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b8"),
+        content: "This looks delicious! I can't wait to try it.",
+        createdAt: ISODate("2022-03-02T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "Funny Cat Videos",
+    description: "Watch the funniest cat videos on the internet!",
+    views: 10000,
+    likes: 500,
+    dislikes: 20,
+    tags: ["cats", "funny", "animals", "pets"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84efd"),
+    uploadedAt: ISODate("2022-02-28T00:00:00Z"),
+    duration: 1200,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efe"),
+        content: "I can't stop laughing! These cats are hilarious.",
+        createdAt: ISODate("2022-02-28T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84efd"),
+            content: "Glad you enjoyed it! Which one was your favorite?",
+            createdAt: ISODate("2022-02-28T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "I love cats! Thanks for sharing this.",
+        createdAt: ISODate("2022-03-01T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "Amazing Nature Time-Lapse",
+    description: "Experience the beauty of nature through stunning time-lapse footage.",
+    views: 142412,
+    likes: 1243,
+    dislikes: 213,
+    tags: ["nature", "time-lapse", "photography", "landscape"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+    uploadedAt: ISODate("2022-02-27T00:00:00Z"),
+    duration: 1800,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efc"),
+        content: "Wow, these time-lapse shots are incredible. What camera did you use?",
+        createdAt: ISODate("2022-02-27T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+            content: "Thanks! I used a Sony A7R III with a variety of lenses.",
+            createdAt: ISODate("2022-02-27T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b7"),
+        content: "This is so relaxing to watch. Thanks for sharing!",
+        createdAt: ISODate("2022-02-28T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "Hiking the Grand Canyon",
+    description: "Join us on an epic journey through one of America's most stunning natural wonders.",
+    views: 14242,
+    likes: 1221,
+    dislikes: 2,
+    tags: ["travel", "hiking", "adventure", "national park"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+    uploadedAt: ISODate("2022-03-03T00:00:00Z"),
+    duration: 3600,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efd"),
+        content: "This is on my bucket list! How long did it take you to hike the whole thing?",
+        createdAt: ISODate("2022-03-03T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+            content: "It took us about 3 days, but we took our time and enjoyed the scenery.",
+            createdAt: ISODate("2022-03-03T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "I've been there before and it's even more beautiful in person. Thanks for sharing your experience!",
+        createdAt: ISODate("2022-03-04T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "The Best Street Food in Tokyo",
+    description: "Discover the best hidden street food gems in Tokyo with our foodie guide.",
+    views: 5000,
+    likes: 200,
+    dislikes: 400,
+    tags: ["food", "travel", "Japan", "street food"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    uploadedAt: ISODate("2022-03-07T00:00:00Z"),
+    duration: 2400,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efb"),
+        content: "I've been to Tokyo before and the food there is amazing! What was your favorite dish?",
+        createdAt: ISODate("2022-03-07T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b8"),
+            content: "Definitely the takoyaki, or octopus balls. So delicious!",
+            createdAt: ISODate("2022-03-07T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efd"),
+        content: "I've always wanted to go to Japan and try the street food. Thanks for the recommendations!",
+        createdAt: ISODate("2022-03-08T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "The Best Funny Animal Videos Compilation",
+    description: "Get ready to laugh with this hilarious compilation of animal videos!",
+    views: 1231233,
+    likes: 13000,
+    dislikes: 20200,
+    tags: ["animals", "funny", "compilation", "pets"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b5"),
+    uploadedAt: ISODate("2022-03-10T00:00:00Z"),
+    duration: 1200,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84efc"),
+        content: "I can't stop laughing! The goat screaming was my favorite.",
+        createdAt: ISODate("2022-03-10T12:34:56Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b5"),
+            content: "Haha, that one always gets me too. Glad you enjoyed the video!",
+            createdAt: ISODate("2022-03-10T12:45:32Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b6"),
+        content: "I love these kinds of videos. They always brighten up my day!",
+        createdAt: ISODate("2022-03-11T09:12:34Z"),
+        replies: []
+    }]
+}, {
+    title: "How to Make Sushi - Step by Step Guide",
+    description: "Learn how to make sushi from scratch with this step-by-step guide. You'll be making delicious sushi rolls in no time!",
+    views: 9824,
+    likes: 567,
+    dislikes: 32,
+    tags: ["cooking", "sushi", "recipe"],
+    author_id: ObjectId("623567dd895a790c3b43e399"),
+    uploadedAt: ISODate("2022-02-03T14:22:23.000Z"),
+    duration: 870,
+    comments: [{
+        author_id: ObjectId("6235680a895a790c3b43e3a0"),
+        content: "Great video! Can't wait to try making my own sushi.",
+        createdAt: ISODate("2022-02-05T08:14:12.000Z"),
+        replies: [{
+            author_id: ObjectId("623567dd895a790c3b43e399"),
+            content: "Thanks for watching! Let me know how your sushi turns out.",
+            createdAt: ISODate("2022-02-06T10:21:04.000Z")
+        }]
+    }]
+}, {
+    title: "10 Minute Yoga Flow for Stress Relief",
+    description: "Relax and destress with this quick 10 minute yoga flow. You'll feel refreshed and rejuvenated in no time!",
+    views: 2500,
+    likes: 112,
+    dislikes: 4,
+    tags: ["yoga", "meditation", "wellness"],
+    author_id: ObjectId("6235683a895a790c3b43e3a5"),
+    uploadedAt: ISODate("2022-02-07T09:35:17.000Z"),
+    duration: 600,
+    comments: [{
+        author_id: ObjectId("6235683a895a790c3b43e3a5"),
+        content: "Glad you enjoyed the video! Let me know if you have any other requests for yoga flows.",
+        createdAt: ISODate("2022-02-09T13:42:39.000Z"),
+        replies: [{
+            author_id: ObjectId("623567dd895a790c3b43e399"),
+            content: "Thanks for the great video! I'd love to see a yoga flow for beginners.",
+            createdAt: ISODate("2022-02-10T11:27:56.000Z")
+        }]
+    }]
+}, {
+    title: "How to Make Pancakes",
+    description: "Learn how to make delicious pancakes from scratch",
+    views: 200,
+    likes: 10,
+    dislikes: 0,
+    tags: ["cooking", "breakfast"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+    uploadedAt: new Date(),
+    duration: 180,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "Thanks for the recipe, I can't wait to try it!",
+        createdAt: new Date(),
+        replies: []
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "Looks great, but can you substitute the flour with almond flour?",
+        createdAt: new Date(),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+            content: "Yes, you can substitute with almond flour, but the texture may be slightly different.",
+            createdAt: new Date()
+        }]
+    }]
+}, {
+    title: "Cute Cats Compilation",
+    description: "Watch these adorable cats do funny things",
+    views: 512200,
+    likes: 51220,
+    dislikes: 2124,
+    tags: ["cats", "animals", "funny"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+    uploadedAt: new Date(),
+    duration: 300,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+        content: "These cats are so cute!",
+        createdAt: new Date(),
+        replies: []
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "Thanks for watching!",
+        createdAt: new Date(),
+        replies: []
+    }]
+}, {
+    title: "Best Gaming Mouse of 2021",
+    description: "Check out the top gaming mice for competitive gaming",
+    views: 100420,
+    likes: 84420,
+    dislikes: 512,
+    tags: ["gaming", "technology"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+    uploadedAt: new Date(),
+    duration: 240,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "What's the difference between these mice and regular mice?",
+        createdAt: new Date(),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+            content: "Gaming mice typically have higher sensitivity and more buttons for customizability.",
+            createdAt: new Date()
+        }]
+    }]
+}, {
+    title: "How to Make Pancakes",
+    description: "In this video, we show you how to make delicious pancakes from scratch.",
+    views: 143251,
+    likes: 500,
+    dislikes: 50,
+    tags: ["pancakes", "breakfast", "cooking"],
+    author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+    uploadedAt: ISODate("2022-10-01T08:00:00Z"),
+    duration: 300,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "These pancakes look amazing! I can't wait to try making them myself.",
+        createdAt: ISODate("2022-10-02T10:30:00Z"),
+        replies: [{
+            author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+            content: "Thanks! Let us know how they turn out.",
+            createdAt: ISODate("2022-10-02T12:00:00Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+        content: "I've tried this recipe and it's amazing! Thanks for sharing.",
+        createdAt: ISODate("2022-10-03T09:45:00Z"),
+        replies: []
+    }]
+}, {
+    title: "Gymnastics Tutorial",
+    description: "Learn how to do basic gymnastics moves in this tutorial.",
+    views: 5012400,
+    likes: 200124,
+    dislikes: 21420,
+    tags: ["gymnastics", "tutorial", "fitness"],
+    author_id: ObjectId("623567dd895a790c3b43e399"),
+    uploadedAt: ISODate("2022-09-15T13:00:00Z"),
+    duration: 64200,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef5"),
+        content: "Great tutorial! I'm definitely going to try some of these moves.",
+        createdAt: ISODate("2022-09-16T11:00:00Z"),
+        replies: [{
+            author_id: ObjectId("623567dd895a790c3b43e399"),
+            content: "Thanks for watching! Let us know how it goes.",
+            createdAt: ISODate("2022-09-16T12:30:00Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b5"),
+        content: "I've been trying to improve my flexibility for ages and this video has been a huge help!",
+        createdAt: ISODate("2022-09-18T16:30:00Z"),
+        replies: []
+    }]
+}, {
+    title: "Introduction to Web Development",
+    description: "In this video, we introduce you to the basics of web development, including HTML, CSS, and JavaScript.",
+    views: 15000,
+    likes: 75120,
+    dislikes: 12400,
+    tags: ["web development", "HTML", "CSS", "JavaScript"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    uploadedAt: ISODate("2022-08-01T11:00:00Z"),
+    duration: 900,
+    comments: [{
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b5"),
+        content: "Great video! I'm just starting out with web development and this has been really helpful.",
+        createdAt: ISODate("2022-08-02T09:00:00Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+            content: "Glad to hear it! Let us know if you have any questions.",
+            createdAt: ISODate("2022-08-02T11:30:00Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "This is a great refresher for me as a web developer. Thanks for sharing!",
+        createdAt: ISODate("2022-08-03T10:30:00Z"),
+        replies: []
+    }]
+}, {
+    title: "Cybersecurity Fundamentals",
+    description: "In this video, we cover the basics of cybersecurity, including common threats and how to protect against them.",
+    views: 2001200,
+    likes: 104200,
+    dislikes: 20210,
+    tags: ["cybersecurity", "network security", "data privacy"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    uploadedAt: ISODate("2022-09-01T09:00:00Z"),
+    duration: 1800,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "This is really helpful information. I've been looking for a good cybersecurity resource.",
+        createdAt: ISODate("2022-09-02T13:00:00Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+            content: "Glad we could help! Cybersecurity is such an important topic in today's world.",
+            createdAt: ISODate("2022-09-02T15:00:00Z")
+        }]
+    }, {
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "I work in IT and this is a great refresher for me. Thanks for sharing!",
+        createdAt: ISODate("2022-09-03T10:30:00Z"),
+        replies: []
+    }]
+}, {
+    title: "Mastering Yoga: The Basics",
+    description: "In this video, we cover the basics of yoga, including key poses and breathing techniques.",
+    views: 512000,
+    likes: 25420,
+    dislikes: 5420,
+    tags: ["yoga", "fitness", "health"],
+    author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+    uploadedAt: ISODate("2022-10-01T09:00:00Z"),
+    duration: 2400,
+    comments: [{
+        author_id: ObjectId("615dca5dc6a5f6b5d6b84ef6"),
+        content: "Thanks for this video! I'm just starting out with yoga and this was really helpful.",
+        createdAt: ISODate("2022-10-02T13:00:00Z"),
+        replies: [{
+            author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+            content: "Glad we could help! Yoga is such a great way to improve flexibility and reduce stress.",
+            createdAt: ISODate("2022-10-02T15:00:00Z")
+        }]
+    }, {
+        author_id: ObjectId("615bfe23ee047d6c9f6c09b9"),
+        content: "I've been doing yoga for years and this was still a great refresher. Thanks!",
+        createdAt: ISODate("2022-10-03T10:30:00Z"),
+        replies: []
+    }]
+}])
+
+//Queries
+
+//1. Получить все видео с соответствующими именами авторов
+
+//a
+
+db.videos.aggregate([{
+    $lookup: {
+        from: "authors", localField: "author_id", foreignField: "_id", as: "author"
+    }
+}, {
+    $project: {
+        title: 1, name: {$arrayElemAt: ["$author.name", 0]}
+    }
+}, {
+    $sort: {
+        name: 1
+    }
+}])
+
+//b
+
+db.authors.aggregate([{
+    $lookup: {
+        from: "videos", localField: "_id", foreignField: "author_id", as: "videos"
+    }
+}, {
+    $project: {
+        name: 1, video_titles: "$videos.title"
+    }
+}, {
+    $sort: {
+        name: 1
+    }
+}])
+
+//2. Получить количество видео у автора
+
+//a
+
+db.videos.aggregate([{
+    $group: {
+        _id: "$author_id", totalVideos: {$sum: 1}
+    }
+}])
+
+//b
+
+db.videos.aggregate([{
+    $group: {
+        _id: "$author_id", count: {$sum: 1}
+    }
+}, {
+    $lookup: {
+        from: "authors", localField: "_id", foreignField: "_id", as: "author"
+    }
+}, {
+    $project: {
+        authorName: {
+            $arrayElemAt: ["$author.name", 0]
+        }, count: 1
+    }
+}, {
+    $sort: {
+        count: -1
+    }
+}])
+
+//c
+
+db.authors.aggregate([{
+    $lookup: {
+        from: "videos", localField: "_id", foreignField: "author_id", as: "videos"
+    }
+}, {
+    $unwind: "$videos",
+}, {
+    $group: {
+        _id: {
+            _id: "$_id", name: "$name"
+        }, videosCount: {
+            $sum: 1
+        }
+    }
+}, {
+    $project: {
+        _id: "$_id._id", name: "$_id.name", count: "$videosCount"
+    }
+}, {
+    $sort: {
+        count: -1
+    }
+}])
+
+//d
+
+db.authors.aggregate([{
+    $lookup: {
+        from: "videos", localField: "_id", foreignField: "author_id", as: "videos"
+    }
+}, {
+    $project: {
+        name: 1, count: {
+            $size: "$videos"
+        }
+    }
+}, {
+    $sort: {
+        count: -1
+    }
+}])
+
+//3. Получить общее количество просмотров на всех видео у автора:
+
+db.videos.aggregate([{
+    $group: {
+        _id: "$author_id", viewsCount: {$sum: "$views"},
+    }
+}, {
+    $lookup: {
+        from: "authors", localField: "_id", foreignField: "_id", as: "author"
+    }
+}, {
+    $project: {
+        authorName: {$arrayElemAt: ["$author.name", 0]}, viewsCount: 1
+    }
+}, {
+    $sort: {
+        viewsCount: -1
+    }
+}])
+
+//4. Получить среднее количество просмотров на всех видео у автора:
+
+db.videos.aggregate([{
+    $group: {
+        _id: "$author_id", totalViews: {$sum: "$views"}, totalVideos: {$sum: 1}
+    }
+}, {
+    $project: {
+        avgViewsPerVideo: {$divide: ["$totalViews", "$totalVideos"]}
+    }
+}, {
+    $sort: {
+        avgViewsPerVideo: -1
+    }
+}, {
+    $lookup: {
+        from: "authors", localField: "_id", foreignField: "_id", as: "author"
+    }
+}, {
+    $project: {
+        authorName: {$arrayElemAt: ["$author.name", 0]}, avgViewsPerVideo: 1
+    }
+}])
+
+// 5. Найти самые просматриваемые видео за неделю
+
+db.videos.aggregate([{
+    $match: {
+        uploadedAt: {
+            $gte: new Date(new Date() - 7 * 24 * 60 * 60 * 1000) // last week
+        }
+    }
+}, {
+    $sort: {
+        views: -1
+    }
+}])
+
+//6. Получить количество комментариев на всех видео
+
+db.videos.aggregate([{
+    $project: {
+        _id: 1, title: 1, commentsCount: {$size: "$comments"}
+    }
+}, {
+    $sort: {
+        commentsCount: -1
+    }
+}])
+
+//7. Получить количество использования тэгов:
+
+db.videos.aggregate([{
+    $unwind: "$tags"
+}, {
+    $group: {
+        _id: "$tags", count: {$sum: 1}
+    }
+}, {
+    $sort: {
+        count: -1
+    }
+}])
+
+//8. Получить видео, у которых больше 1000 просмотров
+
+db.videos.find({views: {$gt: 1000}})
+
+//9. Найти все видео, загруженные за последнюю неделю
+
+db.videos.find({uploadedAt: {$gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)}})
+
+//10. Найти все видео с тегом "cooking" или "food"
+
+db.videos.find({tags: {$in: ["cooking", "food"]}})
+
+//11. Средняя продолжительность видео по тегу
+
+db.videos.aggregate([{
+    $unwind: "$tags"
+}, {
+    $group: {
+        _id: "$tags", avg_duration: {$avg: "$duration"}
+    }
+}])
+
+//12. Количество загружаемых видео в день
+
+//a
+
+db.videos.aggregate([{
+    $group: {
+        _id: {$dateToString: {format: "%Y-%m-%d", date: "$uploadedAt"}}, count: {$sum: 1}
+    }
+}, {
+    $project: {
+        _id: 0, date: "$_id", count: 1
+    }
+}, {
+    $sort: {
+        date: -1
+    }
+}])
+
+//b
+
+db.videos.aggregate([{
+    $group: {
+        _id: {$dayOfWeek: "$uploadedAt"}, count: {$sum: 1}
+    }
+}, {
+    $project: {
+        count: 1, _id: 0, label: {
+            $switch: {
+                branches: [{
+                    "case": {"$eq": ["$_id", 1]}, "then": "Sunday"
+                }, {
+                    "case": {"$eq": ["$_id", 2]}, "then": "Monday"
+                }, {
+                    "case": {"$eq": ["$_id", 3]}, "then": "Tuesday"
+                }, {
+                    "case": {"$eq": ["$_id", 4]}, "then": "Wednesday"
+                }, {
+                    "case": {"$eq": ["$_id", 5]}, "then": "Thursday"
+                }, {
+                    "case": {"$eq": ["$_id", 6]}, "then": "Friday"
+                }, {
+                    "case": {"$eq": ["$_id", 7]}, "then": "Saturday"
+                }], "default": "Unknown"
+            }
+        }
+    }
+}, {
+    $sort: {
+        dayOfWeek: 1
+    }
+},])
